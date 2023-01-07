@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/VacuumWebApp.props" />
+</Project>

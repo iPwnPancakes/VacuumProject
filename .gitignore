@@ -1,0 +1,25 @@
+# Binaries
+*.exe
+*.dll
+*.pdb
+
+# Visual Studio and JetBrains Rider files
+.vs/
+*.sln
+*.suo
+*.user
+*.userprefs
+*.idea/
+
+# NuGet packages
+**/packages/*
+
+# dotnet restore files
+**/project.assets.json
+**/project.lock.json
+
+# JetBrains Rider
+.idea/
+
+# .Net development
+appsettings.Development.json**
