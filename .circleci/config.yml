@@ -17,13 +17,13 @@ jobs:
           name: "Run Acceptance Tests"
           command: dotnet test Web/Web.csproj -c Release
           
-    deploy:
-      docker:
-        - image: digitalocean/doctl:latest
-      steps:
-        - run: 
-            name: "Trigger Deployment"
-            command: doctl apps create-deployment ${CIRCLECI_APP_ID} -t ${CIRCLECI_ACCESS_TOKEN}
+  deploy:
+    docker:
+      - image: digitalocean/doctl:latest
+    steps:
+      - run: 
+          name: "Trigger Deployment"
+          command: doctl apps create-deployment ${CIRCLECI_APP_ID} -t ${CIRCLECI_ACCESS_TOKEN}
 workflows:
   build_and_deploy:
     jobs:
