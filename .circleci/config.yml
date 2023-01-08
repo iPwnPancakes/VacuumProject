@@ -25,10 +25,10 @@ jobs:
 workflows:
   build_and_deploy:
     jobs:
-      - acceptance
+      - build
       - deploy:
           requires:
-            - acceptance
+            - build
 #          filters:
 #            branches:
 #              only: master
