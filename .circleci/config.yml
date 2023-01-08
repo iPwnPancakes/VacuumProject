@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  cli: digitalocean/cli@0.1.1
 jobs:
   build:
     docker:
@@ -14,7 +16,22 @@ jobs:
       - run:
           name: "Run Acceptance Tests"
           command: dotnet test Web/Web.csproj -c Release
+          
+    deploy:
+      docker:
+        - image: digitalocean/doctl:latest
+      steps:
+        - run: 
+            name: "Trigger Deployment"
+            command: doctl apps create-deployment ${CIRCLECI_APP_ID} -t ${CIRCLECI_ACCESS_TOKEN}
 workflows:
-  build:
+  build_and_deploy:
     jobs:
-      - build
+      - acceptance
+      - deploy:
+          requires:
+            - acceptance
+#          filters:
+#            branches:
+#              only: master
+          
