@@ -10,9 +10,9 @@ RUN dotnet restore "Web.csproj"
 RUN dotnet build "Web.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "VacuumWebApp.csproj" -c Release -o /app/publish
+RUN dotnet publish "Web.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "VacuumWebApp.dll"]
+ENTRYPOINT ["dotnet", "Web.dll"]
